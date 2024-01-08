@@ -10,6 +10,28 @@ config_version=5
 
 [application]
 
-config/name="Peanut-s Journey"
+config/name="Peanut's Journey"
+run/main_scene="res://source/scene/init.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
-config/icon="res://icon.svg"
+boot_splash/bg_color=Color(0, 0, 0, 1)
+boot_splash/show_image=false
+boot_splash/fullsize=false
+boot_splash/use_filter=false
+config/icon="res://resource/icon/icon.svg"
+
+[autoload]
+
+Global="*res://source/utility/global.gd"
+GlobalSteam="*res://source/utility/steam.gd"
+SceneTransition="*res://source/utility/scene_transition.tscn"
+
+[display]
+
+window/size/viewport_width=3840
+window/size/viewport_height=2160
+window/stretch/mode="viewport"
+window/stretch/aspect="expand"
+
+[rendering]
+
+environment/defaults/default_clear_color=Color(0, 0, 0, 1)
