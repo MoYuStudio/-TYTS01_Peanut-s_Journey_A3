@@ -154,3 +154,16 @@ layer_3/tile_data = PackedInt32Array()
 script = SubResource("GDScript_n8457")
 
 [node name="Character" parent="." instance=ExtResource("5_vclm3")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Panel" type="Panel" parent="CanvasLayer"]
+offset_left = -91.0
+offset_top = 66.0
+offset_right = 89.0
+offset_bottom = 106.0
+
+[node name="GridContainer" type="GridContainer" parent="CanvasLayer/Panel"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0

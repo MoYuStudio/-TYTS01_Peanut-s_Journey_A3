@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://d1g35e8nsngv"]
+
+[ext_resource type="Theme" uid="uid://cydohugdt4hbx" path="res://interface/theme.tres" id="1_3iry2"]
+
+[node name="Item" type="Panel"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -3584.0
+offset_bottom = -1904.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_3iry2")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_right = 256.0
+offset_bottom = 256.0
