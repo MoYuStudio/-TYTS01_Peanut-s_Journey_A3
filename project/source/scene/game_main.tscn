@@ -1,3 +1,163 @@
-[gd_scene format=3 uid="uid://dslrcpn3uvfpk"]
+[gd_scene load_steps=14 format=3 uid="uid://dslrcpn3uvfpk"]
+
+[ext_resource type="Texture2D" uid="uid://qwape8mdcn7b" path="res://resource/tile/land_0.png" id="1_tevcd"]
+[ext_resource type="Texture2D" uid="uid://d25mb520n1jy1" path="res://resource/tile/wall_0.png" id="2_r6o8j"]
+[ext_resource type="Texture2D" uid="uid://b2wthb0laugtr" path="res://resource/tile/land_1.png" id="3_8lqlh"]
+[ext_resource type="Texture2D" uid="uid://b06dcrd5gjgfs" path="res://resource/icon/icon_x16.png" id="3_l4tha"]
+[ext_resource type="Texture2D" uid="uid://ci036cnv2iu5o" path="res://resource/tile/wall_1.png" id="4_tf1q3"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5j2ki"]
+texture = ExtResource("1_tevcd")
+texture_region_size = Vector2i(16, 80)
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rbev1"]
+texture = ExtResource("2_r6o8j")
+texture_region_size = Vector2i(16, 80)
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:1/0 = 0
+0:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:1/0/physics_layer_0/angular_velocity = 0.0
+0:2/0 = 0
+0:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:2/0/physics_layer_0/angular_velocity = 0.0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_f3cwc"]
+texture = ExtResource("3_8lqlh")
+texture_region_size = Vector2i(16, 80)
+0:2/0 = 0
+0:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:2/0/physics_layer_0/angular_velocity = 0.0
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_oxroa"]
+texture = ExtResource("4_tf1q3")
+texture_region_size = Vector2i(16, 80)
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:1/0 = 0
+0:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:1/0/physics_layer_0/angular_velocity = 0.0
+0:2/0 = 0
+0:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:2/0/physics_layer_0/angular_velocity = 0.0
+
+[sub_resource type="TileSet" id="TileSet_lpjw5"]
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_5j2ki")
+sources/1 = SubResource("TileSetAtlasSource_rbev1")
+sources/2 = SubResource("TileSetAtlasSource_f3cwc")
+sources/3 = SubResource("TileSetAtlasSource_oxroa")
+
+[sub_resource type="GDScript" id="GDScript_n8457"]
+script/source = "
+extends TileMap
+
+var border = 1024
+var safe_zone = 16
+
+var zone_0 = 64
+var zone_1 = 128
+
+var cave_noise = FastNoiseLite.new()
+
+func _ready():
+	cave_noise.seed = randi()
+	cave_noise.frequency = 0.03
+	cave_noise.fractal_octaves = 3
+	
+	for x in range(-border/2,border/2):
+		for y in range(-border/2,border/2):
+			if -zone_1 <= x and x <= zone_1:
+				if -zone_1 <= y and y <= zone_1:
+					if cave_noise.get_noise_2d(x, y)*45 >= -16:
+						set_cell(3,Vector2(x, y),3,Vector2(0,0),0)
+				
+					set_cell(0,Vector2(x, y),2,Vector2(0,0),0)
+				
+			if -zone_0 <= x and x <= zone_0:
+				if -zone_0 <= y and y <= zone_0:
+					if cave_noise.get_noise_2d(x, y)*45 >= -16:
+						set_cell(3,Vector2(x, y),1,Vector2(0,0),0)
+				
+					set_cell(0,Vector2(x, y),0,Vector2(0,0),0)
+			
+	
+	for x in range(-safe_zone/2,safe_zone/2):
+		for y in range(-safe_zone/2,safe_zone/2):
+				set_cell(3,Vector2(x, y),-1,Vector2(0,0),0)
+			
+			
+	
+func _process(delta):
+	pass
+"
+
+[sub_resource type="GDScript" id="GDScript_qfokb"]
+script/source = "
+extends CharacterBody2D
+
+var speed = 200
+
+func _process(delta):
+	handle_input()
+
+func handle_input():
+	velocity = Vector2()
+	
+	if Input.is_action_pressed(\"up\"):
+		velocity.y -= speed
+	if Input.is_action_pressed(\"down\"):
+		velocity.y += speed
+	if Input.is_action_pressed(\"left\"):
+		velocity.x -= speed
+	if Input.is_action_pressed(\"right\"):
+		velocity.x += speed
+		
+	move_and_slide()
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hlvd5"]
+size = Vector2(6, 2)
 
 [node name="GameMain" type="Node"]
+
+[node name="TileMap" type="TileMap" parent="."]
+texture_filter = 1
+tile_set = SubResource("TileSet_lpjw5")
+format = 2
+layer_0/name = "Land"
+layer_1/name = "Floor"
+layer_1/z_index = 1
+layer_1/tile_data = PackedInt32Array()
+layer_2/name = "Decorate"
+layer_2/z_index = 2
+layer_2/tile_data = PackedInt32Array()
+layer_3/name = "Wall"
+layer_3/z_index = 3
+layer_3/tile_data = PackedInt32Array()
+script = SubResource("GDScript_n8457")
+
+[node name="CharacterBody" type="CharacterBody2D" parent="."]
+z_index = 1
+script = SubResource("GDScript_qfokb")
+
+[node name="Sprite" type="Sprite2D" parent="CharacterBody"]
+texture_filter = 1
+position = Vector2(0, -4)
+texture = ExtResource("3_l4tha")
+
+[node name="CollisionShape" type="CollisionShape2D" parent="CharacterBody"]
+shape = SubResource("RectangleShape2D_hlvd5")
+
+[node name="Camera" type="Camera2D" parent="CharacterBody"]
+zoom = Vector2(0.9, 0.9)
