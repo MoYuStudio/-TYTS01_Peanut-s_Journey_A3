@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://cik8oqq1gb8k"
-path="res://.godot/imported/kenney_pixel_square.ttf-5017df4737c389e67133f3ea1140f5bc.fontdata"
+uid="uid://cyvdvdsbhwc8m"
+path="res://.godot/imported/kenney_mini_square.ttf-aa84de60f2495ae3159138a556e691c4.fontdata"
 
 [deps]
 
-source_file="res://resource/font/kenney_pixel_square.ttf"
-dest_files=["res://.godot/imported/kenney_pixel_square.ttf-5017df4737c389e67133f3ea1140f5bc.fontdata"]
+source_file="res://assets/font/kenney_mini_square.ttf"
+dest_files=["res://.godot/imported/kenney_mini_square.ttf-aa84de60f2495ae3159138a556e691c4.fontdata"]
 
 [params]
 

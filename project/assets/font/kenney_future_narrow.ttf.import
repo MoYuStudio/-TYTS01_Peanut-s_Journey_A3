@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://hcpucp3nxqvr"
-path="res://.godot/imported/kenney_rocket.ttf-ef5e861cbd85afe02b76268522fdc659.fontdata"
+uid="uid://bx6jhonl3t8ws"
+path="res://.godot/imported/kenney_future_narrow.ttf-bb56a05e33d87cc1ab77909f01566e4d.fontdata"
 
 [deps]
 
-source_file="res://resource/font/kenney_rocket.ttf"
-dest_files=["res://.godot/imported/kenney_rocket.ttf-ef5e861cbd85afe02b76268522fdc659.fontdata"]
+source_file="res://assets/font/kenney_future_narrow.ttf"
+dest_files=["res://.godot/imported/kenney_future_narrow.ttf-bb56a05e33d87cc1ab77909f01566e4d.fontdata"]
 
 [params]
 

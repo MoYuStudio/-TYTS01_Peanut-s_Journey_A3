@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://wv3slsjoj52u"
-path="res://.godot/imported/手书体.ttf-8012f3f4042772175365a242ef0d68aa.fontdata"
+uid="uid://c0t38oclg5rsh"
+path="res://.godot/imported/kenney_high_square.ttf-ac1515f1ce8479f38dfc54414a3e9e74.fontdata"
 
 [deps]
 
-source_file="res://resource/font/手书体.ttf"
-dest_files=["res://.godot/imported/手书体.ttf-8012f3f4042772175365a242ef0d68aa.fontdata"]
+source_file="res://assets/font/kenney_high_square.ttf"
+dest_files=["res://.godot/imported/kenney_high_square.ttf-ac1515f1ce8479f38dfc54414a3e9e74.fontdata"]
 
 [params]
 

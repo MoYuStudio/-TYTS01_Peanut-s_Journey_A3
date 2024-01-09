@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://dwo3w3m0bti6d"
-path="res://.godot/imported/YouSheBiaoTiHei.ttf-d6b149b9593a9cb3ebf16022ed0402ab.fontdata"
+uid="uid://wv3slsjoj52u"
+path="res://.godot/imported/手书体.ttf-1049ba3e972e3dc1c0d674b25bd9374a.fontdata"
 
 [deps]
 
-source_file="res://resource/font/YouSheBiaoTiHei.ttf"
-dest_files=["res://.godot/imported/YouSheBiaoTiHei.ttf-d6b149b9593a9cb3ebf16022ed0402ab.fontdata"]
+source_file="res://assets/font/手书体.ttf"
+dest_files=["res://.godot/imported/手书体.ttf-1049ba3e972e3dc1c0d674b25bd9374a.fontdata"]
 
 [params]
 

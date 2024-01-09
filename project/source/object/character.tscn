@@ -1,0 +1,53 @@
+[gd_scene load_steps=4 format=3 uid="uid://bl2i8l7gpowjf"]
+
+[ext_resource type="Texture2D" uid="uid://b06dcrd5gjgfs" path="res://assets/icon/icon_x16.png" id="1_8cqks"]
+
+[sub_resource type="GDScript" id="GDScript_qfokb"]
+script/source = "
+extends CharacterBody2D
+
+var speed = 200
+
+func _process(delta):
+	handle_input()
+
+func handle_input():
+	velocity = Vector2()
+	
+	if Input.is_action_pressed(\"up\"):
+		velocity.y -= speed
+	if Input.is_action_pressed(\"down\"):
+		velocity.y += speed
+	if Input.is_action_pressed(\"left\"):
+		velocity.x -= speed
+	if Input.is_action_pressed(\"right\"):
+		velocity.x += speed
+		
+	move_and_slide()
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hlvd5"]
+size = Vector2(6, 2)
+
+[node name="Character" type="CharacterBody2D"]
+z_index = 2
+y_sort_enabled = true
+script = SubResource("GDScript_qfokb")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+z_index = 2
+y_sort_enabled = true
+texture_filter = 1
+position = Vector2(0, -5)
+texture = ExtResource("1_8cqks")
+
+[node name="CollisionShape" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_hlvd5")
+
+[node name="Camera" type="Camera2D" parent="."]
+zoom = Vector2(9, 9)
+position_smoothing_enabled = true
+position_smoothing_speed = 6.0
+rotation_smoothing_enabled = true
+rotation_smoothing_speed = 6.0

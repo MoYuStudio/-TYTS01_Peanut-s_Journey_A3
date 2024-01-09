@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://cqttr8u6le443"
-path="res://.godot/imported/kenney_high.ttf-2a4ea958f2bf31cd37fbfc72b107fe38.fontdata"
+uid="uid://daviaunej6x7"
+path="res://.godot/imported/kenney_future.ttf-7179a0014a786ea136041470225eb91b.fontdata"
 
 [deps]
 
-source_file="res://resource/font/kenney_high.ttf"
-dest_files=["res://.godot/imported/kenney_high.ttf-2a4ea958f2bf31cd37fbfc72b107fe38.fontdata"]
+source_file="res://assets/font/kenney_future.ttf"
+dest_files=["res://.godot/imported/kenney_future.ttf-7179a0014a786ea136041470225eb91b.fontdata"]
 
 [params]
 

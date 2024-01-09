@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://dfxujsbg6k8k5"
-path="res://.godot/imported/kenney_rocket_square.ttf-69021b643d0236b7a00db58fb3e6aa06.fontdata"
+uid="uid://cik8oqq1gb8k"
+path="res://.godot/imported/kenney_pixel_square.ttf-e007d1296371d852b0fc749831c8bbec.fontdata"
 
 [deps]
 
-source_file="res://resource/font/kenney_rocket_square.ttf"
-dest_files=["res://.godot/imported/kenney_rocket_square.ttf-69021b643d0236b7a00db58fb3e6aa06.fontdata"]
+source_file="res://assets/font/kenney_pixel_square.ttf"
+dest_files=["res://.godot/imported/kenney_pixel_square.ttf-e007d1296371d852b0fc749831c8bbec.fontdata"]
 
 [params]
 

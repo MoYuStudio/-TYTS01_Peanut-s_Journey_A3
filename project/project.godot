@@ -17,13 +17,14 @@ boot_splash/bg_color=Color(0, 0, 0, 1)
 boot_splash/show_image=false
 boot_splash/fullsize=false
 boot_splash/use_filter=false
-config/icon="res://resource/icon/icon_x16.png"
+config/icon="res://assets/icon/icon_x16.png"
 
 [autoload]
 
 Global="*res://source/utility/global.gd"
 GlobalSteam="*res://source/utility/steam.gd"
 SceneTransition="*res://source/utility/scene_transition.tscn"
+backpack_grid="*res://addons/backpack_grid/Parameter_function.gd"
 
 [display]
 
@@ -31,6 +32,10 @@ window/size/viewport_width=3840
 window/size/viewport_height=2160
 window/stretch/mode="viewport"
 window/stretch/aspect="expand"
+
+[editor_plugins]
+
+enabled=PackedStringArray()
 
 [input]
 
