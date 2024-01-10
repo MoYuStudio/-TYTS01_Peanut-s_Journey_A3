@@ -1,10 +1,11 @@
-[gd_scene load_steps=14 format=3 uid="uid://dslrcpn3uvfpk"]
+[gd_scene load_steps=15 format=3 uid="uid://dslrcpn3uvfpk"]
 
 [ext_resource type="Texture2D" uid="uid://qwape8mdcn7b" path="res://assets/tile/land_0.png" id="1_tevcd"]
 [ext_resource type="Texture2D" uid="uid://d25mb520n1jy1" path="res://assets/tile/wall_0.png" id="2_r6o8j"]
 [ext_resource type="Texture2D" uid="uid://b2wthb0laugtr" path="res://assets/tile/land_1.png" id="3_8lqlh"]
 [ext_resource type="Texture2D" uid="uid://ci036cnv2iu5o" path="res://assets/tile/wall_1.png" id="4_tf1q3"]
 [ext_resource type="PackedScene" uid="uid://bl2i8l7gpowjf" path="res://source/object/character.tscn" id="5_vclm3"]
+[ext_resource type="PackedScene" uid="uid://ci4ey1lmw7h8f" path="res://interface/ui_inventory.tscn" id="6_mby8f"]
 
 [sub_resource type="GDScript" id="GDScript_sxsmm"]
 script/source = "
@@ -122,8 +123,34 @@ func _ready():
 				set_cell(3,Vector2(x, y),-1,Vector2(0,0),0)
 	
 func _process(delta):
-	var player = local_to_map(player_pos)
-	set_cell(3,Vector2(player.x, player.y-1),-1,Vector2(0,0),0)
+	pass
+	
+func _input(event):
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+			var player_position = player_pos
+			var mouse_position = get_global_mouse_position()
+			
+			var angle = rad_to_deg(atan2(mouse_position.y - player_position.y
+										, mouse_position.x - player_position.x))+180
+										
+			# 上
+			if 44 <= angle and angle <= 135:
+				var player = local_to_map(player_pos)
+				set_cell(3,Vector2(player.x, player.y-1),-1,Vector2(0,0),0)
+			# 右
+			if 134 <= angle and angle <= 255:
+				var player = local_to_map(player_pos)
+				set_cell(3,Vector2(player.x+1, player.y),-1,Vector2(0,0),0)
+			# 下
+			if 254 <= angle and angle <= 345:
+				var player = local_to_map(player_pos)
+				set_cell(3,Vector2(player.x, player.y+1),-1,Vector2(0,0),0)
+			# 左
+			if angle <= 45 or angle >= 344:
+				var player = local_to_map(player_pos)
+				set_cell(3,Vector2(player.x-1, player.y),-1,Vector2(0,0),0)
+			
 "
 
 [node name="GameMain" type="Node2D"]
@@ -157,13 +184,4 @@ script = SubResource("GDScript_n8457")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="Panel" type="Panel" parent="CanvasLayer"]
-offset_left = -91.0
-offset_top = 66.0
-offset_right = 89.0
-offset_bottom = 106.0
-
-[node name="GridContainer" type="GridContainer" parent="CanvasLayer/Panel"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="Inventory" parent="CanvasLayer" instance=ExtResource("6_mby8f")]

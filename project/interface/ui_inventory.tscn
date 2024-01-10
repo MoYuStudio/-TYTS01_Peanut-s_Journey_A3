@@ -1,13 +1,19 @@
 [gd_scene format=3 uid="uid://ci4ey1lmw7h8f"]
 
 [node name="Inventory" type="Panel"]
-anchors_preset = 15
-anchor_right = 1.0
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
 anchor_bottom = 1.0
+offset_left = -1420.0
+offset_top = -457.0
+offset_right = 1460.0
+offset_bottom = -137.0
 grow_horizontal = 2
-grow_vertical = 2
+grow_vertical = 0
 
 [node name="GridContainer" type="GridContainer" parent="."]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 2868.0
+offset_bottom = 312.0
