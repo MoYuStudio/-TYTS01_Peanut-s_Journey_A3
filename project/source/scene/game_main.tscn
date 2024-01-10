@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://dslrcpn3uvfpk"]
+[gd_scene load_steps=24 format=3 uid="uid://dslrcpn3uvfpk"]
 
 [ext_resource type="Texture2D" uid="uid://qwape8mdcn7b" path="res://assets/tile/land_0.png" id="1_tevcd"]
 [ext_resource type="Texture2D" uid="uid://d25mb520n1jy1" path="res://assets/tile/wall_0.png" id="2_r6o8j"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://ci036cnv2iu5o" path="res://assets/tile/wall_1.png" id="4_tf1q3"]
 [ext_resource type="Texture2D" uid="uid://can0k8vmi2yao" path="res://assets/tile/pre_choose.png" id="5_0n7kj"]
 [ext_resource type="AudioStream" uid="uid://bafyvcn6gb683" path="res://assets/sound/excavate_soil.mp3" id="5_2orfh"]
+[ext_resource type="Texture2D" uid="uid://d4ivlqyb7euif" path="res://assets/tile/wall_1_0.png" id="5_3xtg3"]
 [ext_resource type="PackedScene" uid="uid://bl2i8l7gpowjf" path="res://source/object/character.tscn" id="5_vclm3"]
 [ext_resource type="Texture2D" uid="uid://djgr7e25ayqc7" path="res://assets/particle/nomal.png" id="6_bohh8"]
 [ext_resource type="PackedScene" uid="uid://ci4ey1lmw7h8f" path="res://interface/ui_inventory.tscn" id="6_mby8f"]
@@ -60,7 +61,7 @@ texture_region_size = Vector2i(18, 31)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_f3cwc"]
 texture = ExtResource("3_8lqlh")
-texture_region_size = Vector2i(16, 80)
+texture_region_size = Vector2i(18, 18)
 0:2/0 = 0
 0:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:2/0/physics_layer_0/angular_velocity = 0.0
@@ -68,15 +69,16 @@ texture_region_size = Vector2i(16, 80)
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:0/0/physics_layer_0/angular_velocity = 0.0
 
-[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_48xy1"]
-polygon = PackedVector2Array(-8, -24, 8, -24, 8, 8, -8, 8)
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_u2laa"]
+polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_oxroa"]
 texture = ExtResource("4_tf1q3")
-texture_region_size = Vector2i(16, 80)
+texture_region_size = Vector2i(18, 31)
 0:0/0 = 0
+0:0/0/texture_origin = Vector2i(0, 8)
 0:0/0/z_index = 2
-0:0/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_48xy1")
+0:0/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_u2laa")
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:0/0/physics_layer_0/angular_velocity = 0.0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
@@ -87,6 +89,20 @@ texture_region_size = Vector2i(16, 80)
 0:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:2/0/physics_layer_0/angular_velocity = 0.0
 
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_o3efu"]
+polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_a8ywd"]
+texture = ExtResource("5_3xtg3")
+texture_region_size = Vector2i(18, 31)
+0:0/0 = 0
+0:0/0/texture_origin = Vector2i(0, 8)
+0:0/0/z_index = 2
+0:0/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_o3efu")
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
 [sub_resource type="TileSet" id="TileSet_lpjw5"]
 occlusion_layer_0/light_mask = 1
 physics_layer_0/collision_layer = 1
@@ -94,6 +110,7 @@ sources/0 = SubResource("TileSetAtlasSource_5j2ki")
 sources/1 = SubResource("TileSetAtlasSource_rbev1")
 sources/2 = SubResource("TileSetAtlasSource_f3cwc")
 sources/3 = SubResource("TileSetAtlasSource_oxroa")
+sources/4 = SubResource("TileSetAtlasSource_a8ywd")
 
 [sub_resource type="GDScript" id="GDScript_n8457"]
 script/source = "
@@ -113,12 +130,17 @@ var zone_1 = 128 # 石头圈
 
 var cave_noise = FastNoiseLite.new()
 
+var zone_0_noise_1 = FastNoiseLite.new()
+
 var player_pos = Vector2.ZERO
 
 func _ready():
 	cave_noise.seed = randi()
 	cave_noise.frequency = 0.03
 	cave_noise.fractal_octaves = 3
+	
+	zone_0_noise_1.seed = randi()
+	zone_0_noise_1.frequency = 0.16
 	
 	for x in range(-border/2,border/2):
 		for y in range(-border/2,border/2):
@@ -133,8 +155,14 @@ func _ready():
 			# 泥土圈
 			if -zone_0 <= x and x <= zone_0:
 				if -zone_0 <= y and y <= zone_0:
-					if cave_noise.get_noise_2d(x, y)*45 >= -16:
+					# 黄铜
+					if cave_noise.get_noise_2d(x, y)*45 >= -16 and \\
+						zone_0_noise_1.get_noise_2d(x, y)*45 >= 16:
+						set_cell(3,Vector2(x, y),4,Vector2(0,0),0)
+					# 泥土
+					elif cave_noise.get_noise_2d(x, y)*45 >= -16:
 						set_cell(3,Vector2(x, y),1,Vector2(0,0),0)
+					
 				
 					set_cell(0,Vector2(x, y),0,Vector2(0,0),0)
 	# 出生点保护
