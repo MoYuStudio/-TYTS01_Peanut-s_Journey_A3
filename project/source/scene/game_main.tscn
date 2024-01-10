@@ -30,20 +30,21 @@ glow_hdr_luminance_cap = 6.0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5j2ki"]
 texture = ExtResource("1_tevcd")
-texture_region_size = Vector2i(16, 80)
+texture_region_size = Vector2i(18, 18)
 0:0/0 = 0
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:0/0/physics_layer_0/angular_velocity = 0.0
 
-[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_8kp4s"]
-polygon = PackedVector2Array(-8, -24, 8, -24, 8, 8, -8, 8)
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_46no7"]
+polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rbev1"]
 texture = ExtResource("2_r6o8j")
-texture_region_size = Vector2i(16, 80)
+texture_region_size = Vector2i(18, 31)
 0:0/0 = 0
+0:0/0/texture_origin = Vector2i(0, 8)
 0:0/0/z_index = 2
-0:0/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_8kp4s")
+0:0/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_46no7")
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:0/0/physics_layer_0/angular_velocity = 0.0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)

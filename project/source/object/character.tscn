@@ -56,7 +56,7 @@ position = Vector2(0, -5)
 texture = ExtResource("1_8cqks")
 
 [node name="X Ray" type="Sprite2D" parent="."]
-modulate = Color(1, 1, 1, 0.0588235)
+self_modulate = Color(1, 1, 1, 0.0588235)
 z_index = 3
 y_sort_enabled = true
 texture_filter = 1
