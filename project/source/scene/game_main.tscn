@@ -197,7 +197,7 @@ func _input(event):
 func excavate_effect(pos):
 	excavate_soil_sound.position = pos
 	excavate_soil_sound.play()
-	excavate_particles.position = pos
+	excavate_particles.position = Vector2(pos.x,pos.y+1)
 	excavate_particles.emitting = true
 "
 
@@ -210,6 +210,7 @@ radial_velocity_max = 16.0
 gravity = Vector3(0, 0, 0)
 linear_accel_max = 100.0
 scale_min = 0.1
+scale_max = 3.0
 
 [node name="GameMain" type="Node2D"]
 y_sort_enabled = true
@@ -248,10 +249,12 @@ texture_filter = 1
 texture = ExtResource("5_0n7kj")
 
 [node name="ExcavateParticles" type="GPUParticles2D" parent="TileMap"]
-z_index = 2
+modulate = Color(1, 1, 1, 0.392157)
+z_index = 4
 y_sort_enabled = true
+texture_filter = 1
 emitting = false
-amount = 9
+amount = 16
 process_material = SubResource("ParticleProcessMaterial_0hudt")
 texture = ExtResource("6_bohh8")
 lifetime = 0.6
