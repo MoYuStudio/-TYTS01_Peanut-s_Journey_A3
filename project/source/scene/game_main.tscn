@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dslrcpn3uvfpk"]
+[gd_scene load_steps=17 format=3 uid="uid://dslrcpn3uvfpk"]
 
 [ext_resource type="Texture2D" uid="uid://qwape8mdcn7b" path="res://assets/tile/land_0.png" id="1_tevcd"]
 [ext_resource type="Texture2D" uid="uid://d25mb520n1jy1" path="res://assets/tile/wall_0.png" id="2_r6o8j"]
@@ -20,6 +20,7 @@ func _process(delta):
 
 [sub_resource type="Environment" id="Environment_ulcol"]
 background_mode = 3
+ambient_light_color = Color(1, 1, 1, 1)
 glow_enabled = true
 glow_intensity = 0.3
 glow_blend_mode = 0
@@ -34,12 +35,15 @@ texture_region_size = Vector2i(16, 80)
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:0/0/physics_layer_0/angular_velocity = 0.0
 
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_8kp4s"]
+polygon = PackedVector2Array(-8, -24, 8, -24, 8, 8, -8, 8)
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rbev1"]
 texture = ExtResource("2_r6o8j")
 texture_region_size = Vector2i(16, 80)
 0:0/0 = 0
 0:0/0/z_index = 2
-0:0/0/y_sort_origin = 5
+0:0/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_8kp4s")
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:0/0/physics_layer_0/angular_velocity = 0.0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
@@ -60,12 +64,15 @@ texture_region_size = Vector2i(16, 80)
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:0/0/physics_layer_0/angular_velocity = 0.0
 
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_48xy1"]
+polygon = PackedVector2Array(-8, -24, 8, -24, 8, 8, -8, 8)
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_oxroa"]
 texture = ExtResource("4_tf1q3")
 texture_region_size = Vector2i(16, 80)
 0:0/0 = 0
 0:0/0/z_index = 2
-0:0/0/y_sort_origin = 5
+0:0/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_48xy1")
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:0/0/physics_layer_0/angular_velocity = 0.0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
@@ -77,6 +84,7 @@ texture_region_size = Vector2i(16, 80)
 0:2/0/physics_layer_0/angular_velocity = 0.0
 
 [sub_resource type="TileSet" id="TileSet_lpjw5"]
+occlusion_layer_0/light_mask = 1
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_5j2ki")
 sources/1 = SubResource("TileSetAtlasSource_rbev1")
@@ -160,6 +168,9 @@ script = SubResource("GDScript_sxsmm")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_ulcol")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0, 0, 0, 1)
 
 [node name="TileMap" type="TileMap" parent="."]
 y_sort_enabled = true
