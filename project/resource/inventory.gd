@@ -1,6 +1,6 @@
 
 @tool
 extends Resource
-class_name Inventory
+class_name Self_Inventory
 
 @export var items := {}

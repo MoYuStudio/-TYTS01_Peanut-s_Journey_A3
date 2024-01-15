@@ -88,7 +88,7 @@ script = SubResource("GDScript_6o0tv")
 [node name="Logo" type="Sprite2D" parent="."]
 texture_filter = 1
 position = Vector2(1861, 1023)
-scale = Vector2(1.96021, 1.96021)
+scale = Vector2(4.84085, 4.84085)
 texture = ExtResource("1_sl5b1")
 script = SubResource("GDScript_r6bpv")
 

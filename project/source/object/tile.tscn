@@ -1,0 +1,147 @@
+[gd_scene load_steps=13 format=3 uid="uid://dnr5ow5qejxsk"]
+
+[ext_resource type="Texture2D" uid="uid://d25mb520n1jy1" path="res://assets/tile/wall_0.png" id="1_26bja"]
+[ext_resource type="PackedScene" uid="uid://dv67wx8ms2sg5" path="res://source/utility/hurtbox.tscn" id="2_a5ftq"]
+[ext_resource type="AudioStream" uid="uid://bafyvcn6gb683" path="res://assets/sound/excavate_soil.mp3" id="3_psd32"]
+[ext_resource type="Texture2D" uid="uid://djgr7e25ayqc7" path="res://assets/particle/nomal.png" id="4_sus4g"]
+
+[sub_resource type="GDScript" id="GDScript_8avq1"]
+script/source = "
+extends StaticBody2D
+
+@export var tile_data : Self_TileData
+@export var hardness = 1
+
+func _ready():
+	pass
+
+func _process(delta):
+	if hardness <= 0:
+		$AnimationPlayer.play('animation')
+
+func _on_hurt_box_hurt(damage, angle, knock_back):
+	hardness -= damage
+
+
+func _on_animation_player_animation_finished(anim_name):
+	queue_free()
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l02a6"]
+size = Vector2(16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rjjw1"]
+size = Vector2(18, 18)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_iacrf"]
+particle_flag_disable_z = true
+gravity = Vector3(0, 98, 0)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_mcksg"]
+polygon = PackedVector2Array(-9, -5, -9, 8, 9, 8, 9, -5)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ym1y2"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+angle_max = 720.0
+radial_velocity_max = 16.0
+gravity = Vector3(0, 0, 0)
+linear_accel_max = 100.0
+scale_min = 0.1
+scale_max = 3.0
+
+[sub_resource type="Animation" id="Animation_16umb"]
+resource_name = "animation"
+length = 0.2
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.06, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.6, 1.6), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ExcavateParticles:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5g1gc"]
+_data = {
+"animation": SubResource("Animation_16umb")
+}
+
+[node name="Tile" type="StaticBody2D"]
+z_index = 2
+y_sort_enabled = true
+script = SubResource("GDScript_8avq1")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 2
+y_sort_enabled = true
+texture_filter = 1
+position = Vector2(0, -6)
+texture = ExtResource("1_26bja")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+z_index = 9
+shape = SubResource("RectangleShape2D_l02a6")
+
+[node name="HurtBox" parent="." instance=ExtResource("2_a5ftq")]
+collision_layer = 1
+collision_mask = 1
+
+[node name="CollisionShape2D" parent="HurtBox" index="0"]
+shape = SubResource("RectangleShape2D_rjjw1")
+
+[node name="AudioStreamPlayer2D" parent="HurtBox" index="2"]
+stream = ExtResource("3_psd32")
+
+[node name="GPUParticles2D" parent="HurtBox" index="3"]
+emitting = false
+amount = 16
+process_material = SubResource("ParticleProcessMaterial_iacrf")
+texture = ExtResource("4_sus4g")
+lifetime = 0.6
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource("OccluderPolygon2D_mcksg")
+
+[node name="ExcavateParticles" type="GPUParticles2D" parent="."]
+modulate = Color(1, 1, 1, 0.392157)
+z_index = 2
+y_sort_enabled = true
+texture_filter = 1
+emitting = false
+amount = 16
+process_material = SubResource("ParticleProcessMaterial_ym1y2")
+texture = ExtResource("4_sus4g")
+lifetime = 0.6
+one_shot = true
+speed_scale = 2.0
+fixed_fps = 60
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_5g1gc")
+}
+
+[connection signal="hurt" from="HurtBox" to="." method="_on_hurt_box_hurt"]
+[connection signal="finished" from="HurtBox/AudioStreamPlayer2D" to="." method="_on_audio_stream_player_2d_finished"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+
+[editable path="HurtBox"]

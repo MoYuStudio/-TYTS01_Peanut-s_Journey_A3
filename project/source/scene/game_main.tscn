@@ -1,14 +1,11 @@
-[gd_scene load_steps=24 format=3 uid="uid://dslrcpn3uvfpk"]
+[gd_scene load_steps=16 format=3 uid="uid://dslrcpn3uvfpk"]
 
 [ext_resource type="Texture2D" uid="uid://qwape8mdcn7b" path="res://assets/tile/land_0.png" id="1_tevcd"]
-[ext_resource type="Texture2D" uid="uid://d25mb520n1jy1" path="res://assets/tile/wall_0.png" id="2_r6o8j"]
 [ext_resource type="Texture2D" uid="uid://b2wthb0laugtr" path="res://assets/tile/land_1.png" id="3_8lqlh"]
-[ext_resource type="Texture2D" uid="uid://ci036cnv2iu5o" path="res://assets/tile/wall_1.png" id="4_tf1q3"]
-[ext_resource type="Texture2D" uid="uid://can0k8vmi2yao" path="res://assets/tile/pre_choose.png" id="5_0n7kj"]
 [ext_resource type="AudioStream" uid="uid://bafyvcn6gb683" path="res://assets/sound/excavate_soil.mp3" id="5_2orfh"]
-[ext_resource type="Texture2D" uid="uid://d4ivlqyb7euif" path="res://assets/tile/wall_1_0.png" id="5_3xtg3"]
 [ext_resource type="PackedScene" uid="uid://bl2i8l7gpowjf" path="res://source/object/character.tscn" id="5_vclm3"]
 [ext_resource type="Texture2D" uid="uid://djgr7e25ayqc7" path="res://assets/particle/nomal.png" id="6_bohh8"]
+[ext_resource type="PackedScene" uid="uid://dnr5ow5qejxsk" path="res://source/object/tile.tscn" id="6_jsjg5"]
 [ext_resource type="PackedScene" uid="uid://ci4ey1lmw7h8f" path="res://interface/ui_inventory.tscn" id="6_mby8f"]
 
 [sub_resource type="GDScript" id="GDScript_sxsmm"]
@@ -32,32 +29,15 @@ glow_hdr_threshold = 0.66
 glow_hdr_scale = 1.2
 glow_hdr_luminance_cap = 6.0
 
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_ju6xv"]
+scenes/1/scene = ExtResource("6_jsjg5")
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5j2ki"]
 texture = ExtResource("1_tevcd")
 texture_region_size = Vector2i(18, 18)
 0:0/0 = 0
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:0/0/physics_layer_0/angular_velocity = 0.0
-
-[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_46no7"]
-polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rbev1"]
-texture = ExtResource("2_r6o8j")
-texture_region_size = Vector2i(18, 31)
-0:0/0 = 0
-0:0/0/texture_origin = Vector2i(0, 8)
-0:0/0/z_index = 2
-0:0/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_46no7")
-0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-0:0/0/physics_layer_0/angular_velocity = 0.0
-0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-0:1/0 = 0
-0:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-0:1/0/physics_layer_0/angular_velocity = 0.0
-0:2/0 = 0
-0:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-0:2/0/physics_layer_0/angular_velocity = 0.0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_f3cwc"]
 texture = ExtResource("3_8lqlh")
@@ -69,64 +49,38 @@ texture_region_size = Vector2i(18, 18)
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:0/0/physics_layer_0/angular_velocity = 0.0
 
-[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_u2laa"]
-polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_oxroa"]
-texture = ExtResource("4_tf1q3")
-texture_region_size = Vector2i(18, 31)
-0:0/0 = 0
-0:0/0/texture_origin = Vector2i(0, 8)
-0:0/0/z_index = 2
-0:0/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_u2laa")
-0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-0:0/0/physics_layer_0/angular_velocity = 0.0
-0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-0:1/0 = 0
-0:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-0:1/0/physics_layer_0/angular_velocity = 0.0
-0:2/0 = 0
-0:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-0:2/0/physics_layer_0/angular_velocity = 0.0
-
-[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_o3efu"]
-polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_a8ywd"]
-texture = ExtResource("5_3xtg3")
-texture_region_size = Vector2i(18, 31)
-0:0/0 = 0
-0:0/0/texture_origin = Vector2i(0, 8)
-0:0/0/z_index = 2
-0:0/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_o3efu")
-0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-0:0/0/physics_layer_0/angular_velocity = 0.0
-0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-
 [sub_resource type="TileSet" id="TileSet_lpjw5"]
 occlusion_layer_0/light_mask = 1
 physics_layer_0/collision_layer = 1
-sources/0 = SubResource("TileSetAtlasSource_5j2ki")
-sources/1 = SubResource("TileSetAtlasSource_rbev1")
+custom_data_layer_0/name = "hardness"
+custom_data_layer_0/type = 3
 sources/2 = SubResource("TileSetAtlasSource_f3cwc")
-sources/3 = SubResource("TileSetAtlasSource_oxroa")
-sources/4 = SubResource("TileSetAtlasSource_a8ywd")
+sources/1 = SubResource("TileSetAtlasSource_5j2ki")
+sources/0 = SubResource("TileSetScenesCollectionSource_ju6xv")
 
 [sub_resource type="GDScript" id="GDScript_n8457"]
 script/source = "
 extends TileMap
 
 @onready var pre_choose = $PreChoose
-
 @onready var excavate_soil_sound = $ExcavateSoil
-
 @onready var excavate_particles = $ExcavateParticles
 
-var border = 1024
+@onready var player = get_parent().get_node(\"Character\")
+
+var border = 64
 var safe_zone = 9 # 出生点保护
 
-var zone_0 = 64 # 泥土圈
-var zone_1 = 128 # 石头圈
+var zone_0 = 32 # 泥土圈
+var zone_1 = 64 # 石头圈
+
+var chunk_width = 16    # 单区块宽
+var chunk_height = 16   # 单区块高
+
+var chunk_x_num = 4   # 区块X轴渲染数
+var chunk_y_num = 3   # 区块Y轴渲染数
+
+var generated_chunks = {}
 
 var cave_noise = FastNoiseLite.new()
 
@@ -144,13 +98,12 @@ func _ready():
 	
 	for x in range(-border/2,border/2):
 		for y in range(-border/2,border/2):
-			
 			# 石头圈
 			if -zone_1 <= x and x <= zone_1:
 				if -zone_1 <= y and y <= zone_1:
 					if cave_noise.get_noise_2d(x, y)*45 >= -16:
-						set_cell(3,Vector2(x, y),3,Vector2(0,0),0)
-				
+						set_cell(3,Vector2(x, y),0,Vector2(0,0),1)
+					
 					set_cell(0,Vector2(x, y),2,Vector2(0,0),0)
 			# 泥土圈
 			if -zone_0 <= x and x <= zone_0:
@@ -158,75 +111,50 @@ func _ready():
 					# 黄铜
 					if cave_noise.get_noise_2d(x, y)*45 >= -16 and \\
 						zone_0_noise_1.get_noise_2d(x, y)*45 >= 16:
-						set_cell(3,Vector2(x, y),4,Vector2(0,0),0)
+						set_cell(3,Vector2(x, y),0,Vector2(0,0),0)
 					# 泥土
 					elif cave_noise.get_noise_2d(x, y)*45 >= -16:
-						set_cell(3,Vector2(x, y),1,Vector2(0,0),0)
-					
-				
-					set_cell(0,Vector2(x, y),0,Vector2(0,0),0)
+						set_cell(3,Vector2(x, y),0,Vector2(0,0),1)
+						
+					set_cell(0,Vector2(x, y),1,Vector2(0,0),0)
 	# 出生点保护
 	for x in range(-safe_zone/2,safe_zone/2):
 		for y in range(-safe_zone/2,safe_zone/2):
 				set_cell(3,Vector2(x, y),-1,Vector2(0,0),0)
 	
 func _process(delta):
-	var player_position = player_pos
-	var mouse_position = get_global_mouse_position()
-	
-	var angle = rad_to_deg(atan2(mouse_position.y - player_position.y
-								, mouse_position.x - player_position.x))+180
-	var player = local_to_map(player_pos)
-	
-	# 上
-	if 44 <= angle and angle <= 135:
-		pre_choose.position = map_to_local(Vector2(player.x, player.y-1))
-	# 右
-	if 134 <= angle and angle <= 255:
-		pre_choose.position = map_to_local(Vector2(player.x+1, player.y))
-	# 下
-	if 254 <= angle and angle <= 345:
-		pre_choose.position = map_to_local(Vector2(player.x, player.y+1))
-	# 左
-	if angle <= 45 or angle >= 344:
-		pre_choose.position = map_to_local(Vector2(player.x-1, player.y))
+	pass
 	
 func _input(event):
-	if event is InputEventMouseButton:
-		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-			var player_position = player_pos
-			var mouse_position = get_global_mouse_position()
+	pass
 			
-			var angle = rad_to_deg(atan2(mouse_position.y - player_position.y
-										, mouse_position.x - player_position.x))+180
-			var player = local_to_map(player_pos)
-			
-			# 上
-			if 44 <= angle and angle <= 135:
-				if get_cell_source_id(3,Vector2(player.x, player.y-1),false) != -1:
-					excavate_effect(map_to_local(Vector2(player.x, player.y-1)))
-					set_cell(3,Vector2(player.x, player.y-1),-1,Vector2(0,0),0)
-			# 右
-			if 134 <= angle and angle <= 255:
-				if get_cell_source_id(3,Vector2(player.x+1, player.y),false) != -1:
-					excavate_effect(map_to_local(Vector2(player.x+1, player.y)))
-					set_cell(3,Vector2(player.x+1, player.y),-1,Vector2(0,0),0)
-			# 下
-			if 254 <= angle and angle <= 345:
-				if get_cell_source_id(3,Vector2(player.x, player.y+1),false) != -1:
-					excavate_effect(map_to_local(Vector2(player.x, player.y+1)))
-					set_cell(3,Vector2(player.x, player.y+1),-1,Vector2(0,0),0)
-			# 左
-			if angle <= 45 or angle >= 344:
-				if get_cell_source_id(3,Vector2(player.x-1, player.y),false) != -1:
-					excavate_effect(map_to_local(Vector2(player.x-1, player.y)))
-					set_cell(3,Vector2(player.x-1, player.y),-1,Vector2(0,0),0)
-			
+func excavate(x,y):
+	set_cell(3,Vector2(x,y),-1,Vector2(0,0),0)
+	
 func excavate_effect(pos):
 	excavate_soil_sound.position = pos
 	excavate_soil_sound.play()
 	excavate_particles.position = Vector2(pos.x,pos.y+1)
 	excavate_particles.emitting = true
+	
+func generate_chunks_around_player(position):
+	var tile_pos = local_to_map(position)
+	var current_chunk = Vector2(int(tile_pos.x / chunk_width), int(tile_pos.y / chunk_height))
+	
+	for x in range(current_chunk.x - (chunk_x_num-1), current_chunk.x + chunk_x_num):
+		for y in range(current_chunk.y - (chunk_y_num-1), current_chunk.y + chunk_y_num):
+			if not generated_chunks.has(Vector2(x, y)):
+				generate_chunk(Vector2(x, y))
+				generated_chunks[Vector2(x, y)] = true
+
+func generate_chunk(chunk_pos):
+	var chunk_x = chunk_pos.x
+	var chunk_y = chunk_pos.y
+	
+	for x in range(chunk_width):
+		for y in range(chunk_height):
+			var real_x = chunk_x * chunk_width + x
+			var real_y = chunk_y * chunk_height + y
 "
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_0hudt"]
@@ -270,12 +198,6 @@ layer_3/z_index = 2
 layer_3/tile_data = PackedInt32Array()
 script = SubResource("GDScript_n8457")
 
-[node name="PreChoose" type="Sprite2D" parent="TileMap"]
-modulate = Color(1, 1, 1, 0.392157)
-z_index = 9
-texture_filter = 1
-texture = ExtResource("5_0n7kj")
-
 [node name="ExcavateParticles" type="GPUParticles2D" parent="TileMap"]
 modulate = Color(1, 1, 1, 0.392157)
 z_index = 4
@@ -292,7 +214,7 @@ fixed_fps = 60
 
 [node name="ExcavateSoil" type="AudioStreamPlayer2D" parent="TileMap"]
 stream = ExtResource("5_2orfh")
-bus = &"VFX"
+bus = &"SFX"
 
 [node name="Character" parent="." instance=ExtResource("5_vclm3")]
 

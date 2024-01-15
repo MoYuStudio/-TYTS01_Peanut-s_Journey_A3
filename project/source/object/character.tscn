@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://bl2i8l7gpowjf"]
+[gd_scene load_steps=7 format=3 uid="uid://bl2i8l7gpowjf"]
 
 [ext_resource type="Texture2D" uid="uid://b06dcrd5gjgfs" path="res://assets/icon/icon_x16.png" id="1_8cqks"]
 [ext_resource type="Texture2D" uid="uid://cvfl2kq3hhpmn" path="res://assets/light/light.png" id="2_ln15s"]
+[ext_resource type="PackedScene" uid="uid://djh0s3om8acio" path="res://source/utility/hitbox.tscn" id="3_oilrp"]
 
 [sub_resource type="GDScript" id="GDScript_qfokb"]
 script/source = "
@@ -31,22 +32,18 @@ func handle_input():
 radius = 1.0
 height = 6.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_80t1m"]
+radius = 5.0
+
 [node name="Character" type="CharacterBody2D"]
 z_index = 2
 y_sort_enabled = true
 script = SubResource("GDScript_qfokb")
 
-[node name="PointLight2D" type="PointLight2D" parent="."]
-energy = 0.3
-shadow_enabled = true
-shadow_filter = 2
-shadow_filter_smooth = 3.0
-texture = ExtResource("2_ln15s")
-
-[node name="PointLight2D2" type="PointLight2D" parent="."]
-energy = 0.7
-shadow_filter_smooth = 64.0
-texture = ExtResource("2_ln15s")
+[node name="CollisionShape" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1)
+rotation = 1.57079
+shape = SubResource("CapsuleShape2D_6130k")
 
 [node name="Sprite" type="Sprite2D" parent="."]
 z_index = 2
@@ -63,10 +60,17 @@ texture_filter = 1
 position = Vector2(0, -5)
 texture = ExtResource("1_8cqks")
 
-[node name="CollisionShape" type="CollisionShape2D" parent="."]
-position = Vector2(0, -1)
-rotation = 1.57079
-shape = SubResource("CapsuleShape2D_6130k")
+[node name="PointLight2D" type="PointLight2D" parent="."]
+energy = 0.3
+shadow_enabled = true
+shadow_filter = 2
+shadow_filter_smooth = 3.0
+texture = ExtResource("2_ln15s")
+
+[node name="PointLight2D2" type="PointLight2D" parent="."]
+energy = 0.7
+shadow_filter_smooth = 64.0
+texture = ExtResource("2_ln15s")
 
 [node name="Camera" type="Camera2D" parent="."]
 zoom = Vector2(9, 9)
@@ -74,3 +78,14 @@ position_smoothing_enabled = true
 position_smoothing_speed = 6.0
 rotation_smoothing_enabled = true
 rotation_smoothing_speed = 6.0
+
+[node name="HitBox" parent="." instance=ExtResource("3_oilrp")]
+collision_layer = 1
+collision_mask = 1
+damage = 9
+
+[node name="CollisionShape2D" parent="HitBox" index="0"]
+position = Vector2(0, -5)
+shape = SubResource("CircleShape2D_80t1m")
+
+[editable path="HitBox"]
