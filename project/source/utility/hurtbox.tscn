@@ -6,10 +6,10 @@ extends Area2D
 
 @export_enum('Cooldown','HitOnce','DisableHitBox') var hitbox_type = 0
 
-@onready var collision = $CollisionShape2D
+@onready var collision = $CollisionShape
 @onready var disable_timer = $DisableTimer
 @onready var hurt_audio = $AudioStreamPlayer2D
-@onready var hurt_particle = $GPUParticles2D
+@onready var hurt_particle = $GPUParticles
 
 signal hurt(damage, angle, knock_back)
 
@@ -61,7 +61,7 @@ collision_layer = 0
 collision_mask = 0
 script = SubResource("GDScript_j67s4")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape" type="CollisionShape2D" parent="."]
 
 [node name="DisableTimer" type="Timer" parent="."]
 wait_time = 0.5
@@ -69,7 +69,7 @@ wait_time = 0.5
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 bus = &"SFX"
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+[node name="GPUParticles" type="GPUParticles2D" parent="."]
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="timeout" from="DisableTimer" to="." method="_on_disable_timer_timeout"]

@@ -1,12 +1,14 @@
-[gd_scene load_steps=16 format=3 uid="uid://dslrcpn3uvfpk"]
+[gd_scene load_steps=18 format=3 uid="uid://dslrcpn3uvfpk"]
 
+[ext_resource type="PackedScene" uid="uid://b5y1xbdwt62wr" path="res://resource/tiles/soil_wall_tile.tscn" id="1_iph8o"]
 [ext_resource type="Texture2D" uid="uid://qwape8mdcn7b" path="res://assets/tile/land_0.png" id="1_tevcd"]
+[ext_resource type="PackedScene" uid="uid://b7j6e1s0vjsge" path="res://resource/tiles/stone_wall_tile.tscn" id="2_25uup"]
 [ext_resource type="Texture2D" uid="uid://b2wthb0laugtr" path="res://assets/tile/land_1.png" id="3_8lqlh"]
 [ext_resource type="AudioStream" uid="uid://bafyvcn6gb683" path="res://assets/sound/excavate_soil.mp3" id="5_2orfh"]
 [ext_resource type="PackedScene" uid="uid://bl2i8l7gpowjf" path="res://source/object/character.tscn" id="5_vclm3"]
 [ext_resource type="Texture2D" uid="uid://djgr7e25ayqc7" path="res://assets/particle/nomal.png" id="6_bohh8"]
-[ext_resource type="PackedScene" uid="uid://dnr5ow5qejxsk" path="res://source/object/tile.tscn" id="6_jsjg5"]
 [ext_resource type="PackedScene" uid="uid://ci4ey1lmw7h8f" path="res://interface/ui_inventory.tscn" id="6_mby8f"]
+[ext_resource type="FontFile" uid="uid://bxkcgrk5xuhuc" path="res://assets/font/kenney_mini.ttf" id="8_bu34r"]
 
 [sub_resource type="GDScript" id="GDScript_sxsmm"]
 script/source = "
@@ -30,7 +32,8 @@ glow_hdr_scale = 1.2
 glow_hdr_luminance_cap = 6.0
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_ju6xv"]
-scenes/1/scene = ExtResource("6_jsjg5")
+scenes/0/scene = ExtResource("1_iph8o")
+scenes/1/scene = ExtResource("2_25uup")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5j2ki"]
 texture = ExtResource("1_tevcd")
@@ -71,8 +74,8 @@ extends TileMap
 var border = 64
 var safe_zone = 9 # 出生点保护
 
-var zone_0 = 32 # 泥土圈
-var zone_1 = 64 # 石头圈
+var zone_0 = 16 # 泥土圈
+var zone_1 = 32 # 石头圈
 
 var chunk_width = 16    # 单区块宽
 var chunk_height = 16   # 单区块高
@@ -114,7 +117,7 @@ func _ready():
 						set_cell(3,Vector2(x, y),0,Vector2(0,0),0)
 					# 泥土
 					elif cave_noise.get_noise_2d(x, y)*45 >= -16:
-						set_cell(3,Vector2(x, y),0,Vector2(0,0),1)
+						set_cell(3,Vector2(x, y),0,Vector2(0,0),0)
 						
 					set_cell(0,Vector2(x, y),1,Vector2(0,0),0)
 	# 出生点保护
@@ -221,3 +224,13 @@ bus = &"SFX"
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Inventory" parent="CanvasLayer" instance=ExtResource("6_mby8f")]
+
+[node name="Ver" type="Label" parent="CanvasLayer"]
+modulate = Color(1, 1, 1, 0.25098)
+offset_left = 1456.0
+offset_top = 278.0
+offset_right = 2416.0
+offset_bottom = 598.0
+theme_override_fonts/font = ExtResource("8_bu34r")
+theme_override_font_sizes/font_size = 256
+text = "a2403A"

@@ -6,7 +6,7 @@ extends Area2D
 
 @export var damage = 1
 
-@onready var collision = $CollisionShape2D
+@onready var collision = $CollisionShape
 @onready var disable_timer = $DisableHitBoxTimer
 
 func tempdisable():
@@ -22,7 +22,7 @@ collision_layer = 0
 collision_mask = 0
 script = SubResource("GDScript_ddwla")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape" type="CollisionShape2D" parent="."]
 
 [node name="DisableHitBoxTimer" type="Timer" parent="."]
 wait_time = 0.5

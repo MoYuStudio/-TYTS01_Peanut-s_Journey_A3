@@ -12,10 +12,10 @@ var speed = 200
 
 func _process(delta):
 	handle_input()
-
+	
 func handle_input():
 	velocity = Vector2()
-	
+
 	if Input.is_action_pressed(\"up\"):
 		velocity.y -= speed
 	if Input.is_action_pressed(\"down\"):
@@ -24,6 +24,10 @@ func handle_input():
 		velocity.x -= speed
 	if Input.is_action_pressed(\"right\"):
 		velocity.x += speed
+	if Input.is_action_just_pressed(\"hit\"):
+		$HitBox/CollisionShape.set_disabled(false)
+	if Input.is_action_just_released(\"hit\"):
+		$HitBox/CollisionShape.set_disabled(true)
 	
 	move_and_slide()
 "
@@ -32,8 +36,8 @@ func handle_input():
 radius = 1.0
 height = 6.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_80t1m"]
-radius = 5.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nla5k"]
+size = Vector2(8, 4)
 
 [node name="Character" type="CharacterBody2D"]
 z_index = 2
@@ -41,6 +45,7 @@ y_sort_enabled = true
 script = SubResource("GDScript_qfokb")
 
 [node name="CollisionShape" type="CollisionShape2D" parent="."]
+z_index = 9
 position = Vector2(0, -1)
 rotation = 1.57079
 shape = SubResource("CapsuleShape2D_6130k")
@@ -82,10 +87,10 @@ rotation_smoothing_speed = 6.0
 [node name="HitBox" parent="." instance=ExtResource("3_oilrp")]
 collision_layer = 1
 collision_mask = 1
-damage = 9
 
-[node name="CollisionShape2D" parent="HitBox" index="0"]
-position = Vector2(0, -5)
-shape = SubResource("CircleShape2D_80t1m")
+[node name="CollisionShape" parent="HitBox" index="0"]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_nla5k")
+disabled = true
 
 [editable path="HitBox"]

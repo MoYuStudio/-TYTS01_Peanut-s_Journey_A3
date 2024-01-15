@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://b5y1xbdwt62wr"]
+
+[ext_resource type="PackedScene" uid="uid://dnr5ow5qejxsk" path="res://source/object/tile.tscn" id="1_0l2qr"]
+
+[node name="Tile" instance=ExtResource("1_0l2qr")]
+
+[editable path="HurtBox"]

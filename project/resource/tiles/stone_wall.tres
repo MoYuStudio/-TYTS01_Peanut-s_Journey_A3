@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Self_TileData" load_steps=3 format=3 uid="uid://jsbm6rcqmuvr"]
+
+[ext_resource type="Texture2D" uid="uid://ci036cnv2iu5o" path="res://assets/tile/stone_wall.png" id="1_wok2u"]
+[ext_resource type="Script" path="res://resource/tile_data.gd" id="2_pbv2j"]
+
+[resource]
+script = ExtResource("2_pbv2j")
+id = 0
+name = "stone_wall"
+hardness = 9.0
+num = 1
+icon = ExtResource("1_wok2u")
