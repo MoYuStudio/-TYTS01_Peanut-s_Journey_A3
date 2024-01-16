@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Self_ItemData" load_steps=3 format=3 uid="uid://dru7ntnhh8sn2"]
+
+[ext_resource type="Script" path="res://resource/item_data.gd" id="1_ex68h"]
+[ext_resource type="Texture2D" uid="uid://d25mb520n1jy1" path="res://assets/tile/soil_wall.png" id="2_rix03"]
+
+[resource]
+script = ExtResource("1_ex68h")
+id = 0
+name = "soil_wall"
+durability = 0.0
+max_pile = 64
+num = 1
+texture = ExtResource("2_rix03")

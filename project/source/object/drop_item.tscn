@@ -1,0 +1,72 @@
+[gd_scene load_steps=9 format=3 uid="uid://cffd8q806mx8s"]
+
+[ext_resource type="Resource" uid="uid://dru7ntnhh8sn2" path="res://resource/item/soil_wall.tres" id="1_wcpnn"]
+[ext_resource type="Shader" path="res://assets/shader/outline.gdshader" id="2_wk45r"]
+[ext_resource type="Texture2D" uid="uid://d25mb520n1jy1" path="res://assets/tile/soil_wall.png" id="3_4inet"]
+
+[sub_resource type="GDScript" id="GDScript_mbn2p"]
+script/source = "
+extends Area2D
+
+@onready var sprite = $Sprite2D
+@onready var animation_player = $AnimationPlayer
+
+@export var item_data : Self_ItemData
+
+func  _ready():
+	animation_player.play(\"animation\")
+	if item_data != null:
+		sprite.texture = item_data.texture
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_v4xtb"]
+shader = ExtResource("2_wk45r")
+shader_parameter/line_color = Vector4(1, 1, 1, 1)
+shader_parameter/line_thickness = 1.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nk30d"]
+radius = 9.0
+
+[sub_resource type="Animation" id="Animation_6hl8m"]
+resource_name = "animation"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -3), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8xi0a"]
+_data = {
+"animation": SubResource("Animation_6hl8m")
+}
+
+[node name="DropItem" type="Area2D"]
+z_index = 2
+y_sort_enabled = true
+script = SubResource("GDScript_mbn2p")
+item_data = ExtResource("1_wcpnn")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 2
+y_sort_enabled = true
+texture_filter = 1
+material = SubResource("ShaderMaterial_v4xtb")
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("3_4inet")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_nk30d")
+disabled = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_8xi0a")
+}

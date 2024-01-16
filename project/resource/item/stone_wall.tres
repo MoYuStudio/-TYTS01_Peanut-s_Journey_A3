@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Self_ItemData" load_steps=3 format=3 uid="uid://c0hv6e8ynrgeg"]
+
+[ext_resource type="Script" path="res://resource/item_data.gd" id="1_d56wm"]
+[ext_resource type="Texture2D" uid="uid://ci036cnv2iu5o" path="res://assets/tile/stone_wall.png" id="2_5qojm"]
+
+[resource]
+script = ExtResource("1_d56wm")
+id = 0
+name = "stone_wall"
+durability = 0.0
+max_pile = 64
+num = 1
+texture = ExtResource("2_5qojm")

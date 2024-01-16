@@ -9,4 +9,4 @@ class_name Self_ItemData
 @export var max_pile : int     	# 堆叠
 @export var num : int          	# 数量
 
-@export var icon : Texture
+@export var texture : Texture

@@ -1,6 +1,6 @@
 [gd_scene load_steps=13 format=3 uid="uid://dnr5ow5qejxsk"]
 
-[ext_resource type="Resource" uid="uid://byw1oxpyouj3f" path="res://resource/tiles/soil_wall.tres" id="1_8s4j8"]
+[ext_resource type="Resource" uid="uid://byw1oxpyouj3f" path="res://resource/tile/soil_wall.tres" id="1_i6gur"]
 [ext_resource type="PackedScene" uid="uid://dv67wx8ms2sg5" path="res://source/utility/hurtbox.tscn" id="2_a5ftq"]
 [ext_resource type="Texture2D" uid="uid://d25mb520n1jy1" path="res://assets/tile/soil_wall.png" id="2_v6bxw"]
 [ext_resource type="AudioStream" uid="uid://bafyvcn6gb683" path="res://assets/sound/excavate_soil.mp3" id="3_psd32"]
@@ -17,14 +17,22 @@ extends StaticBody2D
 
 var hardness : float
 
+var drop_item = preload(\"res://source/object/drop_item.tscn\")
+
 func _ready():
 	hardness = tile_data.hardness
-	sprite.texture = tile_data.icon
+	sprite.texture = tile_data.texture
 
 func _process(delta):
 	if hardness <= 0:
 		animation_player.play('animation')
 		await animation_player.animation_finished
+		
+		var drop_item_instantiate = drop_item.instantiate()
+		drop_item_instantiate.global_position = global_position
+		drop_item_instantiate.item_data = load(\"res://resource/item/\"+tile_data.name+\".tres\")
+		get_parent().call_deferred(\"add_child\", drop_item_instantiate)
+		
 		queue_free()
 
 func _on_hurt_box_hurt(damage, angle, knock_back):
@@ -92,7 +100,7 @@ _data = {
 z_index = 2
 y_sort_enabled = true
 script = SubResource("GDScript_8avq1")
-tile_data = ExtResource("1_8s4j8")
+tile_data = ExtResource("1_i6gur")
 
 [node name="Sprite" type="Sprite2D" parent="."]
 z_index = 2

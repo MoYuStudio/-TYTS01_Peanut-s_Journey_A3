@@ -1,14 +1,15 @@
-[gd_scene load_steps=18 format=3 uid="uid://dslrcpn3uvfpk"]
+[gd_scene load_steps=20 format=3 uid="uid://dslrcpn3uvfpk"]
 
-[ext_resource type="PackedScene" uid="uid://b5y1xbdwt62wr" path="res://resource/tiles/soil_wall_tile.tscn" id="1_iph8o"]
+[ext_resource type="PackedScene" uid="uid://b5y1xbdwt62wr" path="res://resource/tile/soil_wall_tile.tscn" id="1_iph8o"]
 [ext_resource type="Texture2D" uid="uid://qwape8mdcn7b" path="res://assets/tile/land_0.png" id="1_tevcd"]
-[ext_resource type="PackedScene" uid="uid://b7j6e1s0vjsge" path="res://resource/tiles/stone_wall_tile.tscn" id="2_25uup"]
+[ext_resource type="PackedScene" uid="uid://b7j6e1s0vjsge" path="res://resource/tile/stone_wall_tile.tscn" id="2_25uup"]
 [ext_resource type="Texture2D" uid="uid://b2wthb0laugtr" path="res://assets/tile/land_1.png" id="3_8lqlh"]
 [ext_resource type="AudioStream" uid="uid://bafyvcn6gb683" path="res://assets/sound/excavate_soil.mp3" id="5_2orfh"]
 [ext_resource type="PackedScene" uid="uid://bl2i8l7gpowjf" path="res://source/object/character.tscn" id="5_vclm3"]
 [ext_resource type="Texture2D" uid="uid://djgr7e25ayqc7" path="res://assets/particle/nomal.png" id="6_bohh8"]
 [ext_resource type="PackedScene" uid="uid://ci4ey1lmw7h8f" path="res://interface/ui_inventory.tscn" id="6_mby8f"]
 [ext_resource type="FontFile" uid="uid://bxkcgrk5xuhuc" path="res://assets/font/kenney_mini.ttf" id="8_bu34r"]
+[ext_resource type="Shader" path="res://assets/shader/blur_vignette.gdshader" id="10_va75i"]
 
 [sub_resource type="GDScript" id="GDScript_sxsmm"]
 script/source = "
@@ -171,6 +172,13 @@ linear_accel_max = 100.0
 scale_min = 0.1
 scale_max = 3.0
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7n1cv"]
+shader = ExtResource("10_va75i")
+shader_parameter/blur_radius = 0.2
+shader_parameter/blur_amount = 1.0
+shader_parameter/blur_inner = 0.6
+shader_parameter/blur_outer = 0.66
+
 [node name="GameMain" type="Node2D"]
 y_sort_enabled = true
 texture_filter = 1
@@ -234,3 +242,8 @@ offset_bottom = 598.0
 theme_override_fonts/font = ExtResource("8_bu34r")
 theme_override_font_sizes/font_size = 256
 text = "a2403A"
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_7n1cv")
+offset_right = 3840.0
+offset_bottom = 2160.0

@@ -9,4 +9,4 @@ id = 0
 name = "stone_wall"
 hardness = 9.0
 num = 1
-icon = ExtResource("1_wok2u")
+texture = ExtResource("1_wok2u")
