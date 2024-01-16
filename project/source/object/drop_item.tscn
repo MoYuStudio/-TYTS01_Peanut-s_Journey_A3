@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cffd8q806mx8s"]
+[gd_scene load_steps=10 format=3 uid="uid://cffd8q806mx8s"]
 
 [ext_resource type="Resource" uid="uid://dru7ntnhh8sn2" path="res://resource/item/soil_wall.tres" id="1_wcpnn"]
 [ext_resource type="Shader" path="res://assets/shader/outline.gdshader" id="2_wk45r"]
@@ -48,6 +48,9 @@ _data = {
 "animation": SubResource("Animation_6hl8m")
 }
 
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_rcsl6"]
+polygon = PackedVector2Array(-1, -2, 1, -2, 2, -1, 2, 1, 1, 2, -1, 2, -2, 1, -2, -1.08976)
+
 [node name="DropItem" type="Area2D"]
 z_index = 2
 y_sort_enabled = true
@@ -70,3 +73,6 @@ disabled = true
 libraries = {
 "": SubResource("AnimationLibrary_8xi0a")
 }
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource("OccluderPolygon2D_rcsl6")
