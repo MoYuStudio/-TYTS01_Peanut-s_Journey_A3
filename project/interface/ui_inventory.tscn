@@ -1,7 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://ci4ey1lmw7h8f"]
+[gd_scene load_steps=3 format=3 uid="uid://ci4ey1lmw7h8f"]
 
 [ext_resource type="Resource" uid="uid://b2jxs3ct5n46w" path="res://resource/inventory/player.tres" id="1_brdjy"]
-[ext_resource type="PackedScene" uid="uid://d1g35e8nsngv" path="res://interface/ui_item.tscn" id="1_hovf6"]
 
 [sub_resource type="GDScript" id="GDScript_mfm5m"]
 script/source = "
@@ -9,10 +8,15 @@ extends Panel
 
 @onready var ui_item = preload(\"res://interface/ui_item.tscn\")
 
+@onready var grid_container = $GridContainer
+
 @export var inventory : Self_Inventory
 
 func _ready():
-	pass
+	for item in inventory.items:
+		var ui_item_instantiate = ui_item.instantiate()
+		ui_item_instantiate.item_data = item
+		grid_container.call_deferred(\"add_child\", ui_item_instantiate)
 
 func _process(delta):
 	pass
@@ -40,9 +44,3 @@ offset_bottom = 312.0
 theme_override_constants/h_separation = 256
 theme_override_constants/v_separation = 256
 columns = 9
-
-[node name="Item" parent="GridContainer" instance=ExtResource("1_hovf6")]
-layout_mode = 2
-
-[node name="Item2" parent="GridContainer" instance=ExtResource("1_hovf6")]
-layout_mode = 2
