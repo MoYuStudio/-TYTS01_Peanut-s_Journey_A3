@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Self_Inventory" load_steps=5 format=3 uid="uid://b2jxs3ct5n46w"]
+
+[ext_resource type="Script" path="res://resource/inventory.gd" id="1_6rbxo"]
+[ext_resource type="Resource" uid="uid://c0behdy41k0jv" path="res://resource/item/wooden_pickaxe.tres" id="1_gri2u"]
+[ext_resource type="Resource" uid="uid://dru7ntnhh8sn2" path="res://resource/item/soil_wall.tres" id="2_acloo"]
+[ext_resource type="Resource" uid="uid://c0hv6e8ynrgeg" path="res://resource/item/stone_wall.tres" id="3_vr7r3"]
+
+[resource]
+script = ExtResource("1_6rbxo")
+name = "Player"
+items = Array[Resource("res://resource/item_data.gd")]([ExtResource("1_gri2u"), null, null, ExtResource("2_acloo"), null, null, null, ExtResource("3_vr7r3"), ExtResource("1_gri2u"), null, null, null])

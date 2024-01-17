@@ -49,7 +49,7 @@ size = Vector2(16, 16)
 size = Vector2(18, 18)
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_mcksg"]
-polygon = PackedVector2Array(-9, -5, -9, 8, 9, 8, 9, -5)
+polygon = PackedVector2Array(-9, -7, -9, 8, -7, 9, 7, 9, 9, 8, 9, -7)
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ym1y2"]
 particle_flag_disable_z = true
@@ -124,6 +124,8 @@ shape = SubResource("RectangleShape2D_ou0id")
 stream = ExtResource("3_psd32")
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+z_index = -1
+z_as_relative = false
 occluder = SubResource("OccluderPolygon2D_mcksg")
 
 [node name="ExcavateParticles" type="GPUParticles2D" parent="."]

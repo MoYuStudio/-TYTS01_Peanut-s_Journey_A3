@@ -1,6 +1,20 @@
-[gd_scene load_steps=2 format=3 uid="uid://d1g35e8nsngv"]
+[gd_scene load_steps=4 format=3 uid="uid://d1g35e8nsngv"]
 
 [ext_resource type="Theme" uid="uid://cydohugdt4hbx" path="res://interface/theme.tres" id="1_3iry2"]
+[ext_resource type="Texture2D" uid="uid://bvheysvphfjth" path="res://assets/item/wooden_pickaxe.png" id="2_r4o2f"]
+
+[sub_resource type="GDScript" id="GDScript_pbppx"]
+script/source = "
+extends Panel
+
+@export var item_data : Self_ItemData
+
+func _ready():
+	pass
+
+func _process(delta):
+	pass
+"
 
 [node name="Item" type="Panel"]
 anchors_preset = 15
@@ -11,8 +25,27 @@ offset_bottom = -1904.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_3iry2")
+script = SubResource("GDScript_pbppx")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 0
-offset_right = 256.0
-offset_bottom = 256.0
+offset_left = 28.0
+offset_top = 28.0
+offset_right = 228.0
+offset_bottom = 228.0
+
+[node name="Sprite2D" type="Sprite2D" parent="MarginContainer"]
+texture_filter = 1
+position = Vector2(96, 96)
+scale = Vector2(9, 9)
+texture = ExtResource("2_r4o2f")
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 12
+size_flags_vertical = 8
+text = "1
+"

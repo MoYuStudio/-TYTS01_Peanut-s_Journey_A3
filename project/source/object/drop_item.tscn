@@ -75,4 +75,5 @@ libraries = {
 }
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+visible = false
 occluder = SubResource("OccluderPolygon2D_rcsl6")
