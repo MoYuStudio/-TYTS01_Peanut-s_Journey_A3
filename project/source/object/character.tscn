@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bl2i8l7gpowjf"]
+[gd_scene load_steps=9 format=3 uid="uid://bl2i8l7gpowjf"]
 
 [ext_resource type="Texture2D" uid="uid://b06dcrd5gjgfs" path="res://assets/icon/icon_x16.png" id="1_8cqks"]
 [ext_resource type="Texture2D" uid="uid://cvfl2kq3hhpmn" path="res://assets/light/light.png" id="2_ln15s"]
@@ -30,6 +30,16 @@ func handle_input():
 		$HitBox/CollisionShape.set_disabled(true)
 	
 	move_and_slide()
+
+# 拾取范围框
+func _on_collect_box_area_entered(area):
+	if area.is_in_group(\"drop_item\"):
+		area.collect()
+
+# 拾取结算框
+func _on_grab_box_area_entered(area):
+	if area.is_in_group(\"drop_item\"):
+		area.target = self
 "
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6130k"]
@@ -39,9 +49,17 @@ height = 6.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nla5k"]
 size = Vector2(8, 4)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_is325"]
+radius = 24.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xrhro"]
+radius = 5.0
+
 [node name="Character" type="CharacterBody2D"]
 z_index = 2
 y_sort_enabled = true
+collision_layer = 3
+collision_mask = 3
 script = SubResource("GDScript_qfokb")
 
 [node name="CollisionShape" type="CollisionShape2D" parent="."]
@@ -92,5 +110,22 @@ collision_mask = 1
 position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_nla5k")
 disabled = true
+
+[node name="CollectBox" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollectBox"]
+shape = SubResource("CircleShape2D_is325")
+
+[node name="GrabBox" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GrabBox"]
+shape = SubResource("CircleShape2D_xrhro")
+
+[connection signal="area_entered" from="CollectBox" to="." method="_on_collect_box_area_entered"]
+[connection signal="area_entered" from="GrabBox" to="." method="_on_grab_box_area_entered"]
 
 [editable path="HitBox"]

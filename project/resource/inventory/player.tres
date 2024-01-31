@@ -8,4 +8,4 @@
 [resource]
 script = ExtResource("1_6rbxo")
 name = "Player"
-items = Array[Resource("res://resource/item_data.gd")]([ExtResource("1_gri2u"), null, null, ExtResource("2_acloo"), null, null, null, ExtResource("3_vr7r3"), ExtResource("1_gri2u"), null, null, null])
+items = Array[Resource("res://resource/item_data.gd")]([ExtResource("1_gri2u"), null, null, ExtResource("2_acloo"), null, null, null, ExtResource("3_vr7r3"), ExtResource("1_gri2u")])

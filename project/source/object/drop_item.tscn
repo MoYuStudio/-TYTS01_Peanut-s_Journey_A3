@@ -13,10 +13,21 @@ extends Area2D
 
 @export var item_data : Self_ItemData
 
+var target = null
+var speed = 0
+
 func  _ready():
 	animation_player.play(\"animation\")
 	if item_data != null:
 		sprite.texture = item_data.texture
+		
+func _physics_process(delta):
+	if target != null:
+		global_position = global_position.move_toward(target.global_position, speed)
+		speed += 2*delta
+		
+func collect():
+	queue_free()
 "
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_v4xtb"]
@@ -51,9 +62,11 @@ _data = {
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_rcsl6"]
 polygon = PackedVector2Array(-1, -2, 1, -2, 2, -1, 2, 1, 1, 2, -1, 2, -2, 1, -2, -1.08976)
 
-[node name="DropItem" type="Area2D"]
+[node name="DropItem" type="Area2D" groups=["drop_item"]]
 z_index = 2
 y_sort_enabled = true
+collision_layer = 8
+collision_mask = 8
 script = SubResource("GDScript_mbn2p")
 item_data = ExtResource("1_wcpnn")
 
@@ -67,7 +80,6 @@ texture = ExtResource("3_4inet")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_nk30d")
-disabled = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
