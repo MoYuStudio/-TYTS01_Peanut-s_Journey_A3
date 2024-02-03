@@ -72,7 +72,7 @@ extends TileMap
 
 @onready var player = get_parent().get_node(\"Character\")
 
-var border = 64
+var border = 16
 var safe_zone = 9 # 出生点保护
 
 var zone_0 = 16 # 泥土圈
